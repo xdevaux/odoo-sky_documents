@@ -19,8 +19,9 @@ This module provides document management functionality with:
     'depends': ['base', 'contacts', 'mail', 'web'],
     'data': [
         'security/ir.model.access.csv',
-        'views/sky_document_views.xml',
         'views/sky_document_folder_views.xml',
+        'views/sky_document_views.xml',
+        'views/sky_document_tab_views.xml',
         'views/res_partner_views.xml',
     ],
     'assets': {

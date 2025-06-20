@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_sky_document_user,sky.document.user,model_sky_document,base.group_user,1,1,1,1
 access_sky_document_tag_user,sky.document.tag.user,model_sky_document_tag,base.group_user,1,1,1,1
 access_sky_document_folder_user,sky.document.folder.user,model_sky_document_folder,base.group_user,1,1,1,1
+access_sky_document_tab_user,sky.document.tab.user,model_sky_document_tab,base.group_user,1,1,1,1

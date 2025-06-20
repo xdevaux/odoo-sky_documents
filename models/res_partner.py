@@ -17,32 +17,21 @@ class ResPartner(models.Model):
     def action_view_sky_documents(self):
         self.ensure_one()
 
-        # Check if a "Client" folder exists for this partner
-        client_folder = self.env['sky.document.folder'].search([
-            ('name', '=', 'Client'),
-            ('partner_id', '=', self.id),
-            ('parent_id', '=', False)  # Root folder
-        ], limit=1)
+        # Get or create the 'Client' tab
+        client_tab = self.env['sky.document.tab'].search([('name', '=', 'Client'), ('is_default', '=', True)], limit=1)
+        if not client_tab:
+            client_tab = self.env['sky.document.tab']._get_default_tab()
 
-        # If no "Client" folder exists, create one
-        if not client_folder:
-            client_folder = self.env['sky.document.folder'].create({
-                'name': 'Client',
-                'partner_id': self.id,
-            })
-
-        # Return action to view folders
-        return {
-            'name': _('Documents'),
-            'domain': [('partner_id', '=', self.id)],
-            'res_model': 'sky.document.folder',
-            'type': 'ir.actions.act_window',
-            'view_mode': 'list,form',
-            'context': {
-                'default_partner_id': self.id,
-                'search_default_root_folders': 1,
-            },
+        # Return action to view documents directly
+        action = self.env.ref('sky_documents.action_sky_document_from_partner').read()[0]
+        action['domain'] = [('partner_id', '=', self.id)]
+        action['context'] = {
+            'default_partner_id': self.id,
+            'default_tab_id': client_tab.id,
+            'form_view_ref': 'sky_documents.view_sky_document_form_simple',
+            'group_by': 'tab_id',
         }
+        return action
 
     def action_view_sky_folders(self):
         self.ensure_one()

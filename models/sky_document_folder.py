@@ -9,7 +9,7 @@ class SkyDocumentFolder(models.Model):
     _parent_name = "parent_id"
     _parent_store = True
     _rec_name = 'complete_name'
-    _order = 'parent_path'
+    _order = 'create_date desc'
 
     name = fields.Char(string='Name', required=True)
     complete_name = fields.Char(string='Complete Name', compute='_compute_complete_name', store=True)
@@ -18,7 +18,7 @@ class SkyDocumentFolder(models.Model):
     child_ids = fields.One2many('sky.document.folder', 'parent_id', string='Child Folders')
     document_ids = fields.One2many('sky.document', 'folder_id', string='Documents')
     document_count = fields.Integer(string='Document Count', compute='_compute_document_count')
-    partner_id = fields.Many2one('res.partner', string='Contact', index=True)
+    partner_id = fields.Many2one('res.partner', string='Client', index=True)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company, required=True, ondelete='restrict')
     active = fields.Boolean(default=True)
     user_id = fields.Many2one('res.users', string='Responsible', default=lambda self: self.env.user)
@@ -44,18 +44,36 @@ class SkyDocumentFolder(models.Model):
 
     def action_view_documents(self):
         self.ensure_one()
+        context = {
+            'default_folder_id': self.id,
+            'form_view_ref': 'sky_documents.view_sky_document_form_simple',
+        }
+        if self.partner_id:
+            context['default_partner_id'] = self.partner_id.id
         return {
             'name': _('Documents'),
             'domain': [('folder_id', '=', self.id)],
             'res_model': 'sky.document',
             'type': 'ir.actions.act_window',
             'view_mode': 'list,form',
-            'context': {
-                'default_folder_id': self.id,
-                'form_view_ref': 'sky_documents.view_sky_document_form_simple',
-            },
+            'context': context,
         }
 
     def get_document_count(self):
         self.ensure_one()
         return self.document_count
+
+    def action_create_document(self):
+        self.ensure_one()
+        return {
+            'name': _('New Document'),
+            'res_model': 'sky.document',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'view_id': self.env.ref('sky_documents.view_sky_document_form_simple').id,
+            'target': 'new',
+            'context': {
+                'default_folder_id': self.id,
+                'default_partner_id': self.partner_id.id if self.partner_id else False,
+            },
+        }

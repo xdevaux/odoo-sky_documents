@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Tab Action for Creating New Tab -->
+    <record id="action_create_sky_document_tab" model="ir.actions.act_window">
+        <field name="name">New Tab</field>
+        <field name="res_model">sky.document.tab</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
     <!-- Document Form View -->
     <record id="view_sky_document_form" model="ir.ui.view">
         <field name="name">sky.document.form</field>
@@ -24,7 +32,7 @@
                         </group>
                         <group>
                             <field name="partner_id"/>
-                            <field name="folder_id"/>
+                            <field name="tab_id"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="active" invisible="1"/>
@@ -52,15 +60,19 @@
         <field name="type">list</field>
         <field name="arch" type="xml">
             <list string="Documents" js_class="sky_document_list" multi_edit="1">
+                <header>
+                    <button name="%(sky_documents.action_create_sky_document_folder)d" type="action" string="New Folder" class="btn-primary"/>
+                    <button name="%(sky_documents.action_create_sky_document_tab)d" type="action" string="New Tab" class="btn-secondary"/>
+                </header>
                 <field name="name"/>
                 <field name="file_name"/>
                 <field name="file_type"/>
                 <field name="file_size"/>
                 <field name="partner_id"/>
-                <field name="folder_id"/>
+                <field name="tab_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                <field name="create_date"/>
+                <field name="create_date" string="Créé le"/>
                 <button name="action_open_document" type="object" string="Open" class="btn-primary"/>
             </list>
         </field>
@@ -76,18 +88,18 @@
                 <field name="file_name"/>
                 <field name="file_type"/>
                 <field name="partner_id"/>
-                <field name="folder_id"/>
+                <field name="tab_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="tag_ids"/>
                 <filter string="PDF Files" name="pdf_files" domain="[('is_pdf', '=', True)]"/>
                 <filter string="Images" name="images" domain="[('is_image', '=', True)]"/>
                 <filter string="My Documents" name="my_documents" domain="[('create_uid', '=', uid)]"/>
                 <group expand="0" string="Group By">
-                    <filter string="Contact" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
-                    <filter string="Folder" name="group_by_folder" context="{'group_by': 'folder_id'}"/>
-                    <filter string="File Type" name="group_by_type" context="{'group_by': 'file_type'}"/>
+                    <filter string="Tab" name="group_by_tab" context="{'group_by': 'tab_id'}"/>
+                    <filter string="Client" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Type" name="group_by_type" context="{'group_by': 'file_type'}"/>
                     <filter string="Company" name="group_by_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
-                    <filter string="Creation Date" name="group_by_create_date" context="{'group_by': 'create_date:month'}"/>
+                    <filter string="Créé le" name="group_by_create_date" context="{'group_by': 'create_date:month'}"/>
                 </group>
             </search>
         </field>
@@ -125,7 +137,6 @@
                                 <ul>
                                     <li t-if="record.file_name.raw_value"><field name="file_name"/></li>
                                     <li t-if="record.file_type.raw_value"><field name="file_type"/></li>
-                                    <li t-if="record.folder_id.raw_value"><field name="folder_id"/></li>
                                 </ul>
                                 <div class="o_kanban_record_bottom">
                                     <button name="action_open_document" type="object" class="btn btn-primary btn-sm">Open</button>
@@ -151,7 +162,7 @@
                         <field name="file" filename="file_name" widget="binary"/>
                         <field name="file_name" invisible="1"/>
                         <field name="partner_id"/>
-                        <field name="folder_id"/>
+                        <field name="tab_id"/>
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         <field name="comment" placeholder="Add a comment..."/>
                     </group>
@@ -166,13 +177,13 @@
         <field name="res_model">sky.document</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_sky_document_search"/>
-        <field name="context">{'form_view_ref': 'sky_documents.view_sky_document_form_simple'}</field>
+        <field name="context">{'form_view_ref': 'sky_documents.view_sky_document_form_simple', 'group_by': 'tab_id'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No documents found. Let's create one!
             </p>
             <p>
-                Upload documents to organize and share them with your contacts.
+                Upload documents to organize and share them with your clients.
             </p>
         </field>
     </record>
@@ -232,9 +243,12 @@
         </field>
     </record>
 
+
     <!-- Menu Items -->
     <menuitem id="menu_sky_documents_root" name="SKY Documents" sequence="10"/>
     <menuitem id="menu_sky_documents" name="All Documents" parent="menu_sky_documents_root" action="action_sky_document" sequence="1"/>
-    <menuitem id="menu_sky_document_create" name="New Document" parent="menu_sky_documents_root" action="action_create_sky_document" sequence="2"/>
-    <menuitem id="menu_sky_document_tags" name="Tags" parent="menu_sky_documents_root" action="action_sky_document_tag" sequence="3"/>
+    <menuitem id="menu_sky_document_folders" name="Folders" parent="menu_sky_documents_root" action="action_sky_document_folder" sequence="2"/>
+    <menuitem id="menu_sky_document_create" name="New Document" parent="menu_sky_documents_root" action="action_create_sky_document" sequence="3"/>
+    <menuitem id="menu_sky_document_folder_create" name="New Folder" parent="menu_sky_documents_root" action="action_create_sky_document_folder" sequence="4"/>
+    <menuitem id="menu_sky_document_tags" name="Tags" parent="menu_sky_documents_root" action="action_sky_document_tag" sequence="6"/>
 </odoo>

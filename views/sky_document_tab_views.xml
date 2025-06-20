@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tab Form View -->
+    <record id="view_sky_document_tab_form" model="ir.ui.view">
+        <field name="name">sky.document.tab.form</field>
+        <field name="model">sky.document.tab</field>
+        <field name="arch" type="xml">
+            <form string="Document Tab">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tab Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="is_default"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="document_count"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Documents" name="documents">
+                            <button name="action_view_documents" type="object" string="View Documents" class="btn btn-primary"/>
+                            <field name="document_ids" nolabel="1" context="{'tree_view_ref': 'sky_documents.view_sky_document_list'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tab List View -->
+    <record id="view_sky_document_tab_list" model="ir.ui.view">
+        <field name="name">sky.document.tab.list</field>
+        <field name="model">sky.document.tab</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Document Tabs" decoration-info="document_count == 0" decoration-bf="is_default == True">
+                <field name="sequence" widget="handle"/>
+                <field name="color" widget="color_picker" string=" "/>
+                <field name="name"/>
+                <field name="document_count" string="Documents"/>
+                <field name="is_default" string="Default"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="active" invisible="1"/>
+                <button name="action_view_documents" type="object" string="View Documents" class="btn-primary" invisible="document_count == 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Tab Search View -->
+    <record id="view_sky_document_tab_search" model="ir.ui.view">
+        <field name="name">sky.document.tab.search</field>
+        <field name="model">sky.document.tab</field>
+        <field name="arch" type="xml">
+            <search string="Search Tabs">
+                <field name="name"/>
+                <filter string="Default Tab" name="default_tab" domain="[('is_default', '=', True)]"/>
+                <filter string="Has Documents" name="has_documents" domain="[('document_ids', '!=', False)]"/>
+                <filter string="No Documents" name="no_documents" domain="[('document_ids', '=', False)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Default" name="group_by_default" context="{'group_by': 'is_default'}"/>
+                    <filter string="Company" name="group_by_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tab Action -->
+    <record id="action_sky_document_tab" model="ir.actions.act_window">
+        <field name="name">Document Tabs</field>
+        <field name="res_model">sky.document.tab</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sky_document_tab_search"/>
+        <field name="context">{'active_test': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No tabs found. Let's create one!
+            </p>
+            <p>
+                Create tabs to organize your documents.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Items -->
+    <menuitem id="menu_sky_document_tabs" name="Tabs" parent="menu_sky_documents_root" action="action_sky_document_tab" sequence="3"/>
+    <menuitem id="menu_sky_document_tab_create" name="New Tab" parent="menu_sky_documents_root" action="action_create_sky_document_tab" sequence="5"/>
+</odoo>
