@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Folder Form View -->
+    <record id="view_sky_document_folder_form" model="ir.ui.view">
+        <field name="name">sky.document.folder.form</field>
+        <field name="model">sky.document.folder</field>
+        <field name="arch" type="xml">
+            <form string="Folder">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Folder Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="parent_id"/>
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="document_count"/>
+                            <field name="complete_name" invisible="1"/>
+                            <field name="parent_path" invisible="1"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids" nolabel="1" context="{'tree_view_ref': 'sky_documents.view_sky_document_list'}"/>
+                        </page>
+                        <page string="Subfolders" name="subfolders">
+                            <field name="child_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="document_count"/>
+                                    <field name="color" widget="color_picker"/>
+                                    <field name="create_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Folder List View -->
+    <record id="view_sky_document_folder_list" model="ir.ui.view">
+        <field name="name">sky.document.folder.list</field>
+        <field name="model">sky.document.folder</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Folders" decoration-info="document_count == 0">
+                <field name="name"/>
+                <field name="complete_name" invisible="1"/>
+                <field name="document_count"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="color" widget="color_picker"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="create_date"/>
+                <field name="active" invisible="1"/>
+                <button name="action_view_documents" type="object" string="View Documents" class="btn-primary" invisible="document_count == 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Folder Tree View (using list type) -->
+    <record id="view_sky_document_folder_tree" model="ir.ui.view">
+        <field name="name">sky.document.folder.tree</field>
+        <field name="model">sky.document.folder</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Folders" decoration-info="document_count == 0">
+                <field name="name"/>
+                <field name="document_count"/>
+                <field name="partner_id"/>
+                <button name="action_view_documents" type="object" string="View Documents" class="btn-primary" invisible="document_count == 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Folder Search View -->
+    <record id="view_sky_document_folder_search" model="ir.ui.view">
+        <field name="name">sky.document.folder.search</field>
+        <field name="model">sky.document.folder</field>
+        <field name="arch" type="xml">
+            <search string="Search Folders">
+                <field name="name"/>
+                <field name="complete_name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="color"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <filter string="Root Folders" name="root_folders" domain="[('parent_id', '=', False)]"/>
+                <!-- Filters using document_count removed as it's a non-stored computed field -->
+                <filter string="Has Direct Documents" name="has_documents" domain="[('document_ids', '!=', False)]"/>
+                <filter string="No Direct Documents" name="no_documents" domain="[('document_ids', '=', False)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Parent Folder" name="group_by_parent" context="{'group_by': 'parent_id'}"/>
+                    <filter string="Contact" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Responsible" name="group_by_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Color" name="group_by_color" context="{'group_by': 'color'}"/>
+                    <filter string="Company" name="group_by_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    <filter string="Creation Date" name="group_by_create_date" context="{'group_by': 'create_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Folder Action -->
+    <record id="action_sky_document_folder" model="ir.actions.act_window">
+        <field name="name">Folders</field>
+        <field name="res_model">sky.document.folder</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sky_document_folder_search"/>
+        <field name="context">{'search_default_root_folders': 1, 'active_test': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No folders found. Let's create one!
+            </p>
+            <p>
+                Create folders to organize your documents.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_sky_document_folders" name="Folders" parent="menu_sky_documents_root" action="action_sky_document_folder" sequence="2"/>
+</odoo>

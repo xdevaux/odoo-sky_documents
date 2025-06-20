@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Document Viewer Dialog Template -->
+    <t t-name="sky_documents.DocumentViewerDialog" owl="1">
+        <Dialog title="props.title" size="'xl'">
+            <div class="o_sky_document_viewer">
+                <iframe t-ref="iframe" class="o_sky_document_iframe" frameborder="0" allowfullscreen="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="() => this.close()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <!-- Document Viewer Action Template -->
+    <t t-name="sky_documents.DocumentViewerAction" owl="1">
+        <div class="o_sky_document_viewer_action">
+            <!-- This is just a placeholder as the actual content is shown in the dialog -->
+            <div class="text-center p-4">
+                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                <p>Loading document viewer...</p>
+            </div>
+        </div>
+    </t>
+</templates>

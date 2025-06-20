@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3a450ce3-07ac-4524-b632-73d58eabcce8" name="oc18">
+        <fileTransfer rootFolder="/opt/odoo/addons/sky_documents" accessType="SFTP" host="51.77.188.197" port="22" sshConfigId="422b69e2-4a42-45c9-8cc0-8d7d30f57e90" sshConfig="root@51.77.188.197:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

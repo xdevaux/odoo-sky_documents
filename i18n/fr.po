@@ -1,0 +1,369 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sky_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-20 08:00+0000\n"
+"PO-Revision-Date: 2023-06-20 08:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: fr\n"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__active
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_form
+msgid "Comment"
+msgstr "Commentaire"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__comment
+msgid "Comment"
+msgstr "Commentaire"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__company_id
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__company_id
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_tag__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Company"
+msgstr "Société"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__complete_name
+msgid "Complete Name"
+msgstr "Nom complet"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__partner_id
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__partner_id
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Creation Date"
+msgstr "Date de création"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_form
+msgid "Documents"
+msgstr "Documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__document_count
+msgid "Document Count"
+msgstr "Nombre de documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_res_partner__sky_document_count
+msgid "Document Count"
+msgstr "Nombre de documents"
+
+#. module: sky_documents
+#: model:ir.model,name:sky_documents.model_sky_document_folder
+msgid "Document Folder"
+msgstr "Dossier de documents"
+
+#. module: sky_documents
+#: model:ir.actions.act_window,name:sky_documents.action_sky_document_folder_from_partner
+msgid "Document Folders"
+msgstr "Dossiers de documents"
+
+#. module: sky_documents
+#: model:ir.model,name:sky_documents.model_sky_document_tag
+msgid "Document Tag"
+msgstr "Étiquette de document"
+
+#. module: sky_documents
+#: model:ir.actions.act_window,name:sky_documents.action_sky_document_tag
+msgid "Document Tags"
+msgstr "Étiquettes de documents"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_form
+msgid "Document"
+msgstr "Document"
+
+#. module: sky_documents
+#: model:ir.model,name:sky_documents.model_sky_document
+msgid "SKY Document"
+msgstr "Document SKY"
+
+#. module: sky_documents
+#: model:ir.actions.act_window,name:sky_documents.action_sky_document
+#: model:ir.actions.act_window,name:sky_documents.action_sky_document_from_partner
+#: model:ir.ui.menu,name:sky_documents.menu_sky_documents_root
+msgid "SKY Documents"
+msgstr "Documents SKY"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_partner_form_sky_documents
+msgid "Documents"
+msgstr "Documents"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_list
+msgid "Documents"
+msgstr "Documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__document_ids
+msgid "Documents"
+msgstr "Documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_res_partner__sky_document_ids
+msgid "Documents"
+msgstr "Documents"
+
+#. module: sky_documents
+#: code:addons/sky_documents/static/src/js/sky_documents.js:126
+#, python-format
+msgid "Error uploading files"
+msgstr "Erreur lors du téléchargement des fichiers"
+
+#. module: sky_documents
+#: code:addons/sky_documents/models/sky_document_folder.py:43
+#, python-format
+msgid "Error! You cannot create recursive folders."
+msgstr "Erreur ! Vous ne pouvez pas créer de dossiers récursifs."
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__file
+msgid "File"
+msgstr "Fichier"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__file_name
+msgid "File Name"
+msgstr "Nom du fichier"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__file_size
+msgid "File Size"
+msgstr "Taille du fichier"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__file_type
+msgid "File Type"
+msgstr "Type de fichier"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "File Type"
+msgstr "Type de fichier"
+
+#. module: sky_documents
+#: code:addons/sky_documents/static/src/js/sky_documents.js:121
+#, python-format
+msgid "Files uploaded successfully"
+msgstr "Fichiers téléchargés avec succès"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__folder_id
+msgid "Folder"
+msgstr "Dossier"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_form
+msgid "Folder"
+msgstr "Dossier"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Folder"
+msgstr "Dossier"
+
+#. module: sky_documents
+#: model:ir.actions.act_window,name:sky_documents.action_sky_document_folder
+#: model:ir.ui.menu,name:sky_documents.menu_sky_document_folders
+msgid "Folders"
+msgstr "Dossiers"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_list
+msgid "Folders"
+msgstr "Dossiers"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Has Direct Documents"
+msgstr "A des documents directs"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__is_image
+msgid "Is Image"
+msgstr "Est une image"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__is_pdf
+msgid "Is PDF"
+msgstr "Est un PDF"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Images"
+msgstr "Images"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.sky_document_viewer.DocumentViewerAction
+msgid "Loading document viewer..."
+msgstr "Chargement de la visionneuse de documents..."
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "My Documents"
+msgstr "Mes documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__name
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__name
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_tag__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: sky_documents
+#: model:ir.actions.act_window,name:sky_documents.action_create_sky_document
+#: model:ir.ui.menu,name:sky_documents.menu_sky_document_create
+msgid "New Document"
+msgstr "Nouveau document"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_form_simple
+msgid "New Document"
+msgstr "Nouveau document"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "No Direct Documents"
+msgstr "Pas de documents directs"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_list
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_kanban
+msgid "Open"
+msgstr "Ouvrir"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Parent Folder"
+msgstr "Dossier parent"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__parent_id
+msgid "Parent Folder"
+msgstr "Dossier parent"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "PDF Files"
+msgstr "Fichiers PDF"
+
+#. module: sky_documents
+#: model:ir.model,name:sky_documents.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Root Folders"
+msgstr "Dossiers racines"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Search Folders"
+msgstr "Rechercher des dossiers"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_search
+msgid "Search Documents"
+msgstr "Rechercher des documents"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_search
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document_folder__child_ids
+msgid "Child Folders"
+msgstr "Sous-dossiers"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_form
+msgid "Subfolders"
+msgstr "Sous-dossiers"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__tag_ids
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: sky_documents
+#: model:ir.ui.menu,name:sky_documents.menu_sky_document_tags
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: sky_documents
+#: model:ir.model.fields,field_description:sky_documents.field_sky_document__thumbnail
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#. module: sky_documents
+#: model:ir.ui.menu,name:sky_documents.menu_sky_documents
+msgid "All Documents"
+msgstr "Tous les documents"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.view_sky_document_folder_list
+msgid "View Documents"
+msgstr "Voir les documents"
+
+#. module: sky_documents
+#: model_terms:ir.ui.view,arch_db:sky_documents.sky_document_viewer.DocumentViewerDialog
+msgid "Close"
+msgstr "Fermer"
